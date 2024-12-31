@@ -13,7 +13,9 @@ load_dotenv(dotenv_path)
 
 if __name__ == '__main__':
     s3_bucket = "myetlprojectdata"
-    local_data_folder = "/home/guiadurra/file_generator_etl/data"
+    local_data_folder = os.getenv("local_data_folder")
+
+    print(local_data_folder)
 
     for i in range(4):
         generate_csv_file()
