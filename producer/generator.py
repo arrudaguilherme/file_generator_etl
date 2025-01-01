@@ -7,6 +7,11 @@ import time
 
 fake = Faker("en_US")
 
+def ensure_directory_exists(path):
+    absolute_path = os.path.abspath(path)
+    if not os.path.exists(absolute_path):
+        os.makedirs(absolute_path)
+
 def generate_sales_data(user_ids):
     try:
         sale = {
@@ -196,6 +201,14 @@ def generate_csv_file():
 
     product_df_final = pd.concat(temp_product_data_list)
 
+    ensure_directory_exists("data/users")
+    ensure_directory_exists("data/sales")
+    ensure_directory_exists("data/shipping")
+    ensure_directory_exists("data/marketing_campaigns")
+    ensure_directory_exists("data/feedback")
+    ensure_directory_exists("data/product_categories")
+    ensure_directory_exists("data/products")
+
     date = datetime.now().strftime("%Y-%m-%d %H:%M:%S_%f")
     user_df_final.to_csv(f"data/users/users_{date}.csv", index=False, encoding="utf-8")
     sales_df_final.to_csv(f"data/sales/sales_{date}.csv", index=False, encoding="utf-8")
@@ -205,10 +218,6 @@ def generate_csv_file():
     category_df_final.to_csv(f"data/product_categories/categories_{date}.csv", index=False, encoding="utf-8")
     product_df_final.to_csv(f"data/products/products_{date}.csv", index=False, encoding="utf-8")
 
-    
-
-if __name__ == '__main__':
-    generate_csv_file()
 
  
 

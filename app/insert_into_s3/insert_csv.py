@@ -18,7 +18,7 @@ s3_client = boto3.client(
                         region_name="us-east-1"
                         )
 
-def insert_data_into_s3(local_data_folder, s3_bucket):
+def insert_data_into_s3(local_data_folder:str, s3_bucket:str):
     folders = os.listdir(local_data_folder)
     for folder in folders:
         folder_name = os.path.join(local_data_folder, folder)

@@ -1,7 +1,7 @@
 from sqlalchemy import Column, String, DateTime, Integer, Boolean, Float, ForeignKey
 from sqlalchemy.orm import relationship
 from sqlalchemy.sql import func
-from database import Base
+from app.database.db import Base
 from uuid import uuid4
 
 class UserModel(Base):
